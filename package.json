@@ -1,0 +1,31 @@
+{
+  "name": "bh0-gatsby-blog",
+  "description": "A technology blog by BH0.",
+  "version": "1.0.0",
+  "author": "BH0",
+  "dependencies": {
+    "gatsby": "^1.9.247",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby-remark-prismjs": "^2.0.5",
+    "gatsby-source-filesystem": "^1.5.36",
+    "gatsby-transformer-remark": "^1.7.44",
+    "gh-pages": "^1.1.0",
+    "prismjs": "^1.15.0",
+    "react-helmet": "^5.2.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "npm start"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.0"
+  }
+}
