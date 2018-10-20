@@ -15,6 +15,20 @@ export default function Template({data}) {
 } 
 
 export const postQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
+      }
+    }
+  }
+`;
+
+/*
+export const postQuery = graphql`
     query BlogPostByPath($path: String!) { 
         markdownRemark(frontmatter: { path: { eq: $path} }) { 
             html 
@@ -25,3 +39,6 @@ export const postQuery = graphql`
         }
     }
 ` 
+
+
+*/
