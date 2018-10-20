@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "BH0",
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-netlify-cms": "^3.0.4",
