@@ -9,20 +9,27 @@
  exports.createPages = ({boundActionCreators, graphql}) => { 
     const {createPage} = boundActionCreators; 
     const postTemplate = path.resolve('src/templates/post.js'); 
-    return graphql(`{ 
-        allMarkdownRemark { 
-            edges { 
-                node { 
-                    html
-                    id
-                    frontmatter { 
-                        path
-                        title
-                    }
-                }
+    return graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            excerpt(pruneLength: 250)
+            html
+            id
+            frontmatter {
+              date
+              path
+              title
             }
-        }   
-    }`).then(res => { 
+          }
+        }
+      }
+    }
+  `).then(res => { 
         if (res.errors) { 
             return Promise.reject(res.errors); 
         } 
