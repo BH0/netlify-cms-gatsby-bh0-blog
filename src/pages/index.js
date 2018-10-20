@@ -22,6 +22,7 @@ const IndexPage = ({data}) => (
 
 
 // may not need this 
+/*
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
@@ -34,7 +35,7 @@ export const pageQuery = graphql`
     }
   }
 `;
-
+*/
 /*
 export const pageQuery = graphql`
   query IndexQuery { 
