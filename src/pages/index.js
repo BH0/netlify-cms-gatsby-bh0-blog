@@ -20,6 +20,22 @@ const IndexPage = ({data}) => (
   </div> 
 ); 
 
+
+// may not need this 
+export const pageQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
+      }
+    }
+  }
+`;
+
+/*
 export const pageQuery = graphql`
   query IndexQuery { 
     allMarkdownRemark(
@@ -41,5 +57,6 @@ export const pageQuery = graphql`
     }
   }
 `
+*/
 
 export default IndexPage
