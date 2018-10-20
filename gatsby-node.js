@@ -6,10 +6,68 @@
 
 const path = require('path');
 
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions
+
+    return new Promise((resolve, reject) => {
+        /*
+      graphql(`
+        {
+            allMarkdownRemark {
+            edges {
+              node {
+                slug
+              }
+            }
+          }        
+        }
+      `)
+      */
+     graphql(`     
+     {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 250)
+              html
+              id
+              frontmatter {
+                date
+                path
+                title
+              }
+            }
+          }
+        }
+      }
+   `).then(result => {
+        if (result.errors) {
+            console.log("Result error #### *");
+            return Promise.reject(result.errors);
+        }
+
+        result.data.allMarkdownRemark.edges.map(({ node }) => {
+          createPage({
+            path: node.slug,
+            component: path.resolve(`./src/templates/post.js`),
+            context: {
+              slug: node.slug
+            },
+          })
+        })
+        resolve()
+      })
+    })
+  }
+
+/* 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  const blogPostTemplate = path.resolve('src/templates/blogTemplate.js');
+  const blogPostTemplate = path.resolve('src/templates/post.js');
       return new Promise((resolve, reject) => {
         return graphql(`
             {
@@ -43,11 +101,11 @@ exports.createPages = ({ actions, graphql }) => {
                 context: {},
             });
           });
-          resolve();
         });
+        resolve();
     });
 };
-
+*/
 
  /*
 const path = require('path'); 
